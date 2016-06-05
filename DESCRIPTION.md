@@ -42,10 +42,8 @@ https://app.moqups.com/stephane@turfmedia.com/2E2oRf7wJ5/view
 ## Github App Oauth
 
 Client ID:
-`b834a36eb0643dbb6a45`
 
 Client Secret:
-`6af92a59c8a29a442a527738b354df3b64f5f358`
 
 ## References
 
