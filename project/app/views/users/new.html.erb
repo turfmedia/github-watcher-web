@@ -1,0 +1,9 @@
+<% if current_user %>
+	<h5>Welcome <%= current_user.name %></h5>
+	<h5>Username : <%= current_user.username %></h5>
+	<h5>Token : <%= current_user.token %></h5>
+	<h5>UID : <%= current_user.uid %></h5>
+	<h5> <%= link_to "signout", signout_path %></h5>
+<% else %>
+	<%= link_to "signin with github", "/auth/github" %>
+<% end %>
