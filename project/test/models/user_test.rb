@@ -35,12 +35,12 @@ class UserTest < ActiveSupport::TestCase
   	auth["credentials"] = {}
   	auth["info"] = {}
 
-    auth["uid"] = "995942"
+    auth["uid"] = "9959423da"
     auth["provider"] = "github"
-    auth["username"] = "3lviend"
-    auth["name"] = "Elvin Alvian Siagian"
-    auth["credentials"]["token"] = "98cdcee3d59d45e15f4774a3cf56718899a63094"
-    auth["info"]["email"] = "henryss_10@yahoo.com"
+    auth["username"] = "KwanJun"
+    auth["name"] = "Don Ju Kwan"
+    auth["credentials"]["token"] = "asj34534jgfjdgssdg2738234jhsdfgjsdf"
+    auth["info"]["email"] = "duan_kwan@yahoo.com"
 
   	user = User.create_with_omniauth(auth)
 
