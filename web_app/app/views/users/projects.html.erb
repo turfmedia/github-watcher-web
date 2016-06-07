@@ -1,0 +1,15 @@
+<div class="container content">
+	<div class="row">
+		<div class="twelve column center">
+			<h2>Selecting Project</h2>
+			<div class="dropdown">
+				<button class="button-primary select">Select Project</button>
+				<div class="dropdown-content">
+					<% @projects.each do |project| %>
+						<%= link_to project.name, project_path %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

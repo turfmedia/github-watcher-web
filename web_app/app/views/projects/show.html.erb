@@ -1,0 +1,152 @@
+<section class="main">
+<div class="row padding">
+			<div class="swap-left">
+				<div class="five columns search">
+					<%= form_for([@project, @project.search_items.build]) do |f| %>
+						<div class="form-search">
+							<i class="fa fa-search"></i>
+							<%= f.text_field :topic, class: "search-box", placeholder: "Topic..." %>
+						</div>
+					</div>
+					<div class="three columns tabs">
+							<%= f.text_field :language %>
+					</div>
+					<div class="three columns tabs">
+				      	<%= f.submit "Add", class: "button-primary" %>
+					</div>
+				<% end %>
+			</div>
+
+			<div class="swap-right">
+				<div class="five columns tabs">
+					<input id="tab1" type="radio" data-target="#content1" name="tabs" checked>
+					<label for="tab1">Search</label>
+
+					<input id="tab2" type="radio" data-target="#content2" name="tabs">
+					<label for="tab2">Saved</label>
+
+					<input id="tab3" type="radio" data-target="#content3" name="tabs">
+					<label for="tab3">Deleted</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="twelve columns section-content">
+				<section id="content1" class="content-datas">
+					<div class="row">
+						<div class="three columns">
+							<div class="row">
+								<a href="#"><div class="twelve columns result-search">
+									Search 1
+								</div></a>
+								<a href="#"><div class="twelve columns result-search">
+									Search 2
+								</div></a>
+								<a href="#"><div class="twelve columns result-search">
+									Search 3
+								</div></a>
+								<a href="#"><div class="twelve columns result-search">
+									Search 4
+								</div></a>
+							</div>
+						</div>
+						<div class="five columns">
+							<div class="row">
+								<div class="twelve columns report">
+									<div class="row link">
+										<div class="twelve columns inner-report" style="position: relative;">
+											<a href="#">Report 1 (36)</a>
+											<input type="checkbox" style="position: absolute;right: 5px;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="twelve	 columns inner-report" style="position: relative;">
+											Description of this repository
+											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="twelve columns report">
+									<div class="row link">
+										<div class="twelve columns inner-report" style="position: relative;">
+											<a href="#">Report 1 (36)</a>
+											<input type="checkbox" style="position: absolute;right: 5px;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="twelve	 columns inner-report" style="position: relative;">
+											Description of this repository
+											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										</div>
+									</div>
+								</div>
+							</div><div class="row">
+								<div class="twelve columns report">
+									<div class="row link">
+										<div class="twelve columns inner-report" style="position: relative;">
+											<a href="#">Report 1 (36)</a>
+											<input type="checkbox" style="position: absolute;right: 5px;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="twelve	 columns inner-report" style="position: relative;">
+											Description of this repository
+											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										</div>
+									</div>
+								</div>
+							</div><div class="row">
+								<div class="twelve columns report">
+									<div class="row link">
+										<div class="twelve columns inner-report" style="position: relative;">
+											<a href="#">Report 1 (36)</a>
+											<input type="checkbox" style="position: absolute;right: 5px;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="twelve	 columns inner-report" style="position: relative;">
+											Description of this repository
+											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="twelve columns report">
+									<div class="row link">
+										<div class="twelve columns inner-report" style="position: relative;">
+											<a href="#">Report 1 (36)</a>
+											<input type="checkbox" style="position: absolute;right: 5px;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="twelve	 columns inner-report" style="position: relative;">
+											Description of this repository
+											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="four columns">
+							<div class="read-me">READ ME</div>
+						</div>
+					</div>
+				</section>
+				<section id="content2" class="content-datas">This #2 content</section>
+				<section id="content3" class="content-datas">This #3 content</section>
+			</div>
+		</div>
+</section>
+	<script src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#content1").show();
+			$("input[name='tabs']").click(function(){
+				$('.content-datas').hide();
+				$($(this).data('target')).show();
+			});
+		});
+	</script>

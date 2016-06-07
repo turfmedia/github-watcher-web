@@ -1,0 +1,24 @@
+<% if current_user.present? %>
+	<nav class="header">
+		<div class="main">
+			<div class="row">
+				<div class="twelve columns">
+				<% if !params[:controller].eql? "users" and !params[:action].eql? "projects" %>
+					<div class="dropdown nav">
+						<button class="button-primary">Project</button>
+						<ul class="dropdown-content">
+							<% current_user.projects.each do |project| %>
+								<li> <%= link_to project.name, project_path(project) %></li>
+							<% end %>
+							<li class="add-project"><%= link_to "Add New Project", new_project_path %></li>
+						</ul>
+					</div>
+				<% end %>
+					<div class="profile">
+						<%= link_to "Signout", signout_path %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+<% end %>
