@@ -12,7 +12,7 @@ projects.each_with_index do |project, index|
   Project.create(name: project, user_id: index+1 )
 end
 
-topics = {'Topic1'=>'ruby','Topic2'=>'php','Topic3'=>'ruby','Topic4'=>'javascript','Topic5'=>'ruby'}
+topics = {'Topic1'=>'RUBY','Topic2'=>'JAVA','Topic3'=>'HTML','Topic4'=>'HTML','Topic5'=>'CSS'}
 
 topics.each_with_index do |item, index|
   SearchItem.create(topic: item[0], language:item[1], project_id: index+1)
