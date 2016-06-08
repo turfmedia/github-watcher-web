@@ -7,22 +7,11 @@
 					&nbsp;
 				</div>
 				<div class="six columns">
-				<%= form_for @project, :html => { class: "input-custom"} do |f| %>
-					<div id="error">
-				      <p>
-				      	<%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:
-				      </p>
-				      <%= string=""%>
-				      <% @project.errors.full_messages.each do |message| %>
-				        <% string += message+" " %>
-				      <% end %>
-				      <%= string %>
-				    </div>
-				    	<%= f.hidden_field :user_id, :value => current_user.id %>
+					<%= form_for @project, :html => { class: "input-custom"} do |f| %>
+				    <%= f.hidden_field :user_id, :value => current_user.id %>
 						<%= f.text_field :name, class: "u-full-width", placeholder: "name of project" %>
 						<%= f.submit class:"button-primary" %>
-				<% end %>
-				
+					<% end %>
 				</div>
 			</div>
 		</div>

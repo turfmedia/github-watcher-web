@@ -24,8 +24,8 @@ class ProjectsController < ApplicationController
 		    format.html { redirect_to @project, notice: 'Project was successfully created.' }
 		    format.json { render :show, status: :created, location: @project }
 		  else
-		    format.html { render :new }
-		    format.json { render json: @project, alert: 'unprocessable_entity' }
+		    format.html { redirect_to new_project_path, alert: 'Failed to create project, you must insert minimal 5 character for project.' }
+		    format.json { render json: @project, alert: 'Failed to create project, you must insert minimal 5 character for project.' }
 		  end
 		end
 	end

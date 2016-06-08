@@ -11,7 +11,11 @@
 </head>
 <body class="">
 		<%= render 'layouts/navigation' %>
+    <%= load_flash_message %>
 <%= yield %>
 
 </body>
 </html>
+<script type="text/javascript">
+  setTimeout("$('#flash-alert').fadeOut('slow')", 4500)
+</script>
