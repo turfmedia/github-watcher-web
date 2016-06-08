@@ -8,7 +8,8 @@ class ProjectsController < ApplicationController
 
 
 	def show
-		@search_items = @project .search_items
+		@search_items = @project.search_items
+		github_get_repos
 	end
 
 	def new

@@ -40,7 +40,7 @@
 								<% @search_items.each do |sItem| %>
 									<% if !sItem.new_record? %>
 										<div class="twelve columns result-search">
-											<a href="#"><%= sItem.topic %></a>
+											<a href="<%= project_search_item_path(sItem.project_id, sItem.id) %>"><%= sItem.topic %></a>
 										</div>
 									<% end %>
 								<% end %>
@@ -48,36 +48,7 @@
 						</div>
 						<div class="five columns">
 							<div class="row">
-								<div class="twelve columns report">
-									<div class="row link">
-										<div class="twelve columns inner-report" style="position: relative;">
-											<a href="#">Report 1 (36)</a>
-											<input type="checkbox" style="position: absolute;right: 5px;">
-										</div>
-									</div>
-									<div class="row">
-										<div class="twelve	 columns inner-report" style="position: relative;">
-											Description of this repository
-											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="twelve columns report">
-									<div class="row link">
-										<div class="twelve columns inner-report" style="position: relative;">
-											<a href="#">Report 1 (36)</a>
-											<input type="checkbox" style="position: absolute;right: 5px;">
-										</div>
-									</div>
-									<div class="row">
-										<div class="twelve	 columns inner-report" style="position: relative;">
-											Description of this repository
-											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
-										</div>
-									</div>
-								</div>
+								<%= render 'search_items/show' %>
 							</div>
 						</div>
 						<div class="four columns">

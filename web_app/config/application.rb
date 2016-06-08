@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'dalli'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -24,3 +25,5 @@ module WebApp
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+CACHESEARCH = Dalli::Client.new('127.0.0.1', { :namespace => 'github_watcher', :expires_in => 1.day, :socket_timeout => 3, :compress => true })
