@@ -8,12 +8,12 @@ class SearchItemsController < ApplicationController
 	  respond_to do |format|
 	    if @search.save
 	    	format.html { redirect_to project_path(@project), notice: 'Topic was successfully created.' }
-	        format.json { render :show, status: :created, location: project_path(@project) }
+	      format.json { render :show, status: :created, location: project_path(@project) }
+				github_get_repos
 	    else
-	      	format.html { redirect_to project_path(@project), alert: 'Failed to create topic, you must insert minimal 5 character for topic.' }
+	     	format.html { redirect_to project_path(@project), alert: 'Failed to create topic, you must insert minimal 5 character for topic.' }
 	    end
 		end
-		github_get_repos
 	end
 
 	#show search item

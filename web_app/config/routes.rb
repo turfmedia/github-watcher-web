@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-    resources :search_items
+    resources :search_items, except: :show
+    get '/search_items/:id', to: 'projects#show'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

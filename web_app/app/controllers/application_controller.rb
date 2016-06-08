@@ -9,9 +9,7 @@ class ApplicationController < ActionController::Base
   #request to github to get repos based on search fields
   def github_get_repos
     if params[:controller] == 'projects'
-      @search = @project.search_items.first
-    elsif params[:controller] == 'search_items'
-      @search = @search_item
+      @search = SearchItem.find(params[:id])
     end
     caches_search = CACHESEARCH.get("search_"+@search.id.to_s)
     @caches_search = if caches_search.blank?
