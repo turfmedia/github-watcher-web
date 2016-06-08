@@ -9,13 +9,7 @@
 						</div>
 					</div>
 					<div class="three columns tabs">
-						<select>
-						    <option selected>Language</option>
-							<option value="Ruby">RUBY</option>
-							<option value="JAVA">JAVA</option>
-							<option value="HTML">HTML</option>
-							<option value="CSS">CSS</option>
-						</select>
+					<%= f.select :language, options_for_select([["Language", ""], "Ruby", "Java", "Html", "CSS"]) %>
 					</div>
 					<div class="three columns tabs">
 				      	<%= f.submit "Add", class: "button-primary" %>
@@ -42,18 +36,11 @@
 					<div class="row">
 						<div class="three columns">
 							<div class="row">
+							<% @project.search_items.each do |sItem| %>
 								<a href="#"><div class="twelve columns result-search">
-									Search 1
+									<%= sItem.topic %>
 								</div></a>
-								<a href="#"><div class="twelve columns result-search">
-									Search 2
-								</div></a>
-								<a href="#"><div class="twelve columns result-search">
-									Search 3
-								</div></a>
-								<a href="#"><div class="twelve columns result-search">
-									Search 4
-								</div></a>
+							<% end %>
 							</div>
 						</div>
 						<div class="five columns">
