@@ -8,6 +8,7 @@
 					<% @projects.each do |project| %>
 						<%= link_to project.name, project_path %>
 					<% end %>
+					<%= link_to "Add New Project", new_project_path %>
 				</div>
 			</div>
 		</div>

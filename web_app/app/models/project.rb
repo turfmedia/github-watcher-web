@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
 	has_many :saved_results
 	has_many :deleted_results
 
+
 	belongs_to :user
 
 end

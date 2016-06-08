@@ -182,7 +182,7 @@ form{
 .form-search i{
 	position: absolute;
 	top: 10px;
-	left: 5px;
+	left: 9px;
 }
 
 .form-search input[type="text"]{
@@ -236,9 +236,10 @@ a .result-search:hover{
 	width: 100%;
 }
 
+
 .swap-left{
 	float: right;
-	width: 60%;
+	width: 36%;
 }
 
 /*end page 3*/
@@ -378,4 +379,9 @@ a .result-search:hover{
   border-left-color: #2ECC71;
   color: #2ECC71;
   padding: 10px;
+}
+.noresult{
+	color: #a6a6a6;
+	text-align: center;
+	margin-top:100px;
 }

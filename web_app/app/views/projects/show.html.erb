@@ -33,14 +33,17 @@
 		<div class="row">
 			<div class="twelve columns section-content">
 				<section id="content1" class="content-datas">
+				<% if @search_items.count > 0 %>
 					<div class="row">
 						<div class="three columns">
 							<div class="row">
-							<% @project.search_items.each do |sItem| %>
-								<a href="#"><div class="twelve columns result-search">
-									<%= sItem.topic %>
-								</div></a>
-							<% end %>
+								<% @search_items.each do |sItem| %>
+									<% if !sItem.new_record? %>
+										<div class="twelve columns result-search">
+											<a href="#"><%= sItem.topic %></a>
+										</div>
+									<% end %>
+								<% end %>
 							</div>
 						</div>
 						<div class="five columns">
@@ -75,22 +78,20 @@
 										</div>
 									</div>
 								</div>
-							</div><div class="row">
-								<div class="twelve columns report">
-									<div class="row link">
-										<div class="twelve columns inner-report" style="position: relative;">
-											<a href="#">Report 1 (36)</a>
-											<input type="checkbox" style="position: absolute;right: 5px;">
-										</div>
-									</div>
-									<div class="row">
-										<div class="twelve	 columns inner-report" style="position: relative;">
-											Description of this repository
-											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
-										</div>
-									</div>
-								</div>
-							</div><div class="row">
+							</div>
+						</div>
+						<div class="four columns">
+							<div class="read-me">READ ME</div>
+						</div>
+					</div>
+				<% else %>
+					<h6 class="noresult">No Search Item</h6>
+				<% end %>
+				</section>
+				<section id="content2" class="content-datas">
+					<div class="row">
+						<div class="five columns">
+							<div class="row">
 								<div class="twelve columns report">
 									<div class="row link">
 										<div class="twelve columns inner-report" style="position: relative;">
@@ -128,8 +129,31 @@
 						</div>
 					</div>
 				</section>
-				<section id="content2" class="content-datas">This #2 content</section>
-				<section id="content3" class="content-datas">This #3 content</section>
+				<section id="content3" class="content-datas">
+					<div class="row">
+						<div class="five columns">
+							<div class="row">
+								<div class="twelve columns report">
+									<div class="row link">
+										<div class="twelve columns inner-report" style="position: relative;">
+											<a href="#">Report 1 (36)</a>
+											<input type="checkbox" style="position: absolute;right: 5px;">
+										</div>
+									</div>
+									<div class="row">
+										<div class="twelve	 columns inner-report" style="position: relative;">
+											Description of this repository
+											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="four columns">
+							<div class="read-me">READ ME</div>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 </section>

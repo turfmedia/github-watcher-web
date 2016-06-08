@@ -5,10 +5,12 @@
 				<div class="twelve columns">
 				<% if !params[:controller].eql? "users" and !params[:action].eql? "projects" %>
 					<div class="dropdown nav">
-						<button class="button-primary">Project</button>
+						<button class="button-primary"><%= current_user.projects.find(params[:id]).name.titleize %></button>
 						<ul class="dropdown-content">
 							<% current_user.projects.each do |project| %>
-								<li> <%= link_to project.name, project_path(project) %></li>
+								<% if !project.id.eql? params[:id].to_i %>
+									<li><%= link_to project.name.titleize, project_path(project) %></li>
+								<% end %>
 							<% end %>
 							<li class="add-project"><%= link_to "Add New Project", new_project_path %></li>
 						</ul>

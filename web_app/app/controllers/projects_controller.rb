@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
 
 
 	def show
-		@search = SearchItem.new
+		@search_items = @project .search_items
 	end
 
 	def new
