@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
 
 
 	def show
-		@search_items = @project.search_items
+		@search_items = @project.search_items.order('created_at DESC')
 		github_get_repos
 	end
 
