@@ -27,6 +27,10 @@ module ApplicationHelper
 
   # get search items name
   def search_item_topic(search_item)
-    search_item_topic = SearchItem.find(search_item).topic
+    search_item_topic = begin 
+      SearchItem.find(search_item).topic
+    rescue
+      ""
+    end
   end
 end
