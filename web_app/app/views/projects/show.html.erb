@@ -39,7 +39,7 @@
 							<div class="row">
 								<% @search_items.each do |sItem| %>
 									<% unless sItem.id.blank? %>
-										<div class="twelve columns result-search report <%= 'active' if (sItem.id == params[:id].to_i) %>" id="<%= sItem.id %>">
+										<div class="twelve columns result-search report <%= 'active' if (sItem.id == params[:id].to_i) && !params[:project_id].blank? %>" id="<%= sItem.id %>">
 											<a href="<%= project_search_item_path(sItem.project_id, sItem.id) %>"><%= sItem.topic %></a>
 										</div>
 									<% end %>
