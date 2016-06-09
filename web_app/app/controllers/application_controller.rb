@@ -8,21 +8,29 @@ class ApplicationController < ActionController::Base
  
   #request to github to get repos based on search fields
   def github_get_repos
-    if params[:controller] == 'projects'
-      @search = SearchItem.find(params[:id])
-    end
-    caches_search = CACHESEARCH.get("search_"+@search.id.to_s)
-    @caches_search = if caches_search.blank?
-      user_token = current_user.token
-      topic      = @search.topic
-      language   = @search.language
-      client_initialize = Github::Watcher::Client.new(user_token)
-      new_search = client_initialize.search(topic, language)
-
-      CACHESEARCH.set("search_"+@search.id.to_s, new_search, 1.day)
+    begin
+      unless params[:controller] == 'search_items' && params[:action] == 'create'
+        if params[:project_id].blank?
+          @search = Project.find(params[:id]).search_items.last
+        else
+          @search = SearchItem.find(params[:id])
+        end
+      end
+      
       caches_search = CACHESEARCH.get("search_"+@search.id.to_s)
-    else
-      caches_search
+      @caches_search = if caches_search.blank?
+        user_token = current_user.token
+        topic      = @search.topic
+        language   = @search.language
+        client_initialize = Github::Watcher::Client.new(user_token)
+        new_search = client_initialize.search(topic, language)
+
+        CACHESEARCH.set("search_"+@search.id.to_s, new_search, 1.day)
+        caches_search = CACHESEARCH.get("search_"+@search.id.to_s)
+      else
+        caches_search
+      end
+    rescue Exception => e
     end
   end
 
