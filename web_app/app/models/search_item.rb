@@ -4,4 +4,8 @@ class SearchItem < ActiveRecord::Base
 	
 	belongs_to :project
 
+
+	def self.get_cache_results(search_items_id)
+		CACHESEARCH.get("search_"+search_items_id.to_s)
+	end
 end
