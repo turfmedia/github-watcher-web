@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
 	def show
 		@search_items = @project.search_items.order('created_at DESC')
 		github_get_repos
+		@saved_results_by_project = @project.saved_results.order('created_at DESC')
+		@deleted_results_by_project = @project.deleted_results.order('created_at DESC')
 	end
 
 	def new

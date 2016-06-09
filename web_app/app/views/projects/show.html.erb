@@ -33,122 +33,169 @@
 		<div class="row">
 			<div class="twelve columns section-content">
 				<section id="content1" class="content-datas">
-				<% if @search_items.count > 0 %>
-					<div class="row">
-						<div class="three columns">
-							<div class="row">
-								<% @search_items.each do |sItem| %>
-									<% unless sItem.id.blank? %>
-										<div class="twelve columns result-search report <%= 'active' if (sItem.id == params[:id].to_i) && !params[:project_id].blank? %>" id="<%= sItem.id %>">
-											<a href="<%= project_search_item_path(sItem.project_id, sItem.id) %>"><%= sItem.topic %></a>
-										</div>
+					<% if @search_items.count > 0 %>
+						<div class="row">
+							<div class="three columns">
+								<div class="row">
+									<% @search_items.each do |sItem| %>
+										<% unless sItem.id.blank? %>
+											<div class="twelve columns result-search report <%= 'active' if (sItem.id == params[:id].to_i) && !params[:project_id].blank? %>" id="<%= sItem.id %>">
+												<a href="<%= project_search_item_path(sItem.project_id, sItem.id) %>"><%= sItem.topic %> (<%= sItem.date_request_cache.strftime("%d/%m/%Y %H:%M") rescue '' %>)</a>
+											</div>
+										<% end %>
 									<% end %>
-								<% end %>
+								</div>
+							</div>
+							<% if params[:project_id].blank? %>
+				  	  	<% search_items_id = Project.find(params[:id]).search_items.last.id %>
+				  	  <% else %>
+		          	<% search_items_id = params[:id] %>
+		          <% end %>
+							<div class="five columns">
+								<div class="row">
+									<% @caches_search.each do |caches_search|%>
+										<% if include_in_deleted_result?(caches_search) %>
+										  <div class="twelve columns report <%= 'selected-cache' if !compare_data(caches_search) %>" id="list-<%= caches_search[:id] %>">
+										      <div class="row link">
+										        <div class="twelve columns inner-report" style="position: relative;">
+										          <a href="#"><%= caches_search[:name] %>&nbsp;(<%= caches_search[:stars] %>)</a>
+										          <%= check_box_tag "caches_search_ids", caches_search[:id], compare_data(caches_search) ? false : true, style: 'position: absolute;right: 5px;', class: 'caches_search', data:{caches_search_ids: caches_search[:id], search_items_id: search_items_id} %>
+										        </div>
+										      </div>
+										      <div class="row">
+										        <div class="twelve   columns inner-report" style="position: relative;">
+										          <%= caches_search[:description] %>
+										          <a href="#" class="caches_search_delete" data-target="#list-<%= caches_search[:id] %>" data-caches-search-ids="<%= caches_search[:id]%>" data-search-items-id="<%= search_items_id %>" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										        </div>
+										      </div>
+										  </div>
+										<% end %>
+									<% end %>
+								</div>
+							</div>
+							<div class="four columns">
+								<div class="read-me">READ ME</div>
 							</div>
 						</div>
-						<div class="five columns">
-							<div class="row">
-								<% @caches_search.each do |caches_search|%>
-								  <div class="twelve columns report">
-								      <div class="row link">
-								        <div class="twelve columns inner-report" style="position: relative;">
-								          <a href="#"><%= caches_search[:name] %>&nbsp;(<%= caches_search[:stars] %>)</a>
-								          <input type="checkbox" style="position: absolute;right: 5px;">
-								        </div>
-								      </div>
-								      <div class="row">
-								        <div class="twelve   columns inner-report" style="position: relative;">
-								          <%= caches_search[:description] %>
-								          <a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
-								        </div>
-								      </div>
-								  </div>
-								<% end %>
-							</div>
-						</div>
-						<div class="four columns">
-							<div class="read-me">READ ME</div>
-						</div>
-					</div>
-				<% else %>
-					<h6 class="noresult">No Search Item</h6>
-				<% end %>
+					<% else %>
+						<h6 class="noresult">No Search Item</h6>
+					<% end %>
 				</section>
 				<section id="content2" class="content-datas">
-					<div class="row">
-						<div class="five columns">
-							<div class="row">
-								<div class="twelve columns report">
-									<div class="row link">
-										<div class="twelve columns inner-report" style="position: relative;">
-											<a href="#">Report 1 (36)</a>
-											<input type="checkbox" style="position: absolute;right: 5px;">
+					<% if @saved_results_by_project.blank? %>
+						<h6 class="noresult">No saved results from topic <%= search_item_topic(search_items_id.to_i) %></h6>
+					<% else %>
+						<% @saved_results_by_project.each do |sv|%>
+							<% if search_items_id.to_i == sv.search_items_id %>
+								<div class="row" id="list-<%= sv.repo_id %>">
+									<div class="five columns">
+										<div class="row">
+											<div class="twelve columns report">
+												<div class="row link">
+													<div class="twelve columns inner-report" style="position: relative;">
+														<a href="#"><%= sv.repo_title %>&nbsp;(<%= sv.repo_stars %>)</a>
+													</div>
+												</div>
+												<div class="row">
+													<div class="twelve	 columns inner-report" style="position: relative;">
+														<%= sv.repo_description %>
+														<a href="#" class="caches_search_delete" data-target="#list-<%= sv.repo_id %>" data-caches-search-ids="<%= sv.repo_id %>" data-search-items-id="<%= search_items_id %>" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="twelve	 columns inner-report" style="position: relative;">
-											Description of this repository
-											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="twelve columns report">
-									<div class="row link">
-										<div class="twelve columns inner-report" style="position: relative;">
-											<a href="#">Report 1 (36)</a>
-											<input type="checkbox" style="position: absolute;right: 5px;">
-										</div>
-									</div>
-									<div class="row">
-										<div class="twelve	 columns inner-report" style="position: relative;">
-											Description of this repository
-											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
-										</div>
+									<div class="four columns">
+										<div class="read-me">READ ME</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="four columns">
-							<div class="read-me">READ ME</div>
-						</div>
-					</div>
+							<% end %>
+						<% end %>
+					<% end %>
 				</section>
 				<section id="content3" class="content-datas">
-					<div class="row">
-						<div class="five columns">
-							<div class="row">
-								<div class="twelve columns report">
-									<div class="row link">
-										<div class="twelve columns inner-report" style="position: relative;">
-											<a href="#">Report 1 (36)</a>
-											<input type="checkbox" style="position: absolute;right: 5px;">
+					<% if @deleted_results_by_project.blank? %>
+						<h6 class="noresult">No deleted results from topic <%= search_item_topic(search_items_id.to_i) %></h6>
+					<% else %>
+						<% @deleted_results_by_project.each do |dl|%>
+							<% if search_items_id.to_i == dl.search_items_id %>
+								<div class="row">
+									<div class="five columns">
+										<div class="row">
+											<div class="twelve columns report">
+												<div class="row link">
+													<div class="twelve columns inner-report" style="position: relative;">
+														<a href="#"><%= dl.repo_title %>&nbsp;(<%= dl.repo_stars %>)</a>
+													</div>
+												</div>
+												<div class="row">
+													<div class="twelve	 columns inner-report" style="position: relative;">
+														<%= dl.repo_description%>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="twelve	 columns inner-report" style="position: relative;">
-											Description of this repository
-											<a href="#" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
-										</div>
+									<div class="four columns">
+										<div class="read-me">READ ME</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="four columns">
-							<div class="read-me">READ ME</div>
-						</div>
-					</div>
+							<% end %>
+						<% end %>
+					<% end %>
 				</section>
 			</div>
 		</div>
 </section>
+
 <script type="text/javascript">
 	$(function(){
 		$("#content1").show();
 		$("input[name='tabs']").click(function(){
 			$('.content-datas').hide();
 			$($(this).data('target')).show();
+		});
+	});
+
+	$(function(){
+		$('.caches_search').click(function(){
+			var $obj = $(this);
+			$.ajax({
+             url: "<%= saved_results_path %>",
+            type: "POST",
+        dataType: "json",
+            data: { caches_search_ids: $(this).data('caches-search-ids'), 
+                    checked: $(this).prop('checked'),
+                    search_items_id: $(this).data('search-items-id')
+                  },
+         success: function(data) {
+         					$($obj.data("target")).addClass('choose-cache')
+         					console.log('Ajax success!!')
+         					location.reload();
+                }
+    	});
+		});
+	});
+
+	$(function(){
+		$('.caches_search_delete').click(function(){
+			var $obj = $(this);
+			$.ajax({
+             url: "<%= deleted_results_path %>",
+            type: "POST",
+        dataType: "json",
+            data: { caches_search_ids: $(this).data('caches-search-ids'),
+                    search_items_id: $(this).data('search-items-id')
+                  },
+         success: function(data) {
+         					console.log('Ajax success!!')
+         					$($obj.data("target")).remove();
+         					location.reload();
+                },
+          error: function() {
+                  console.log('Ajax error!!')
+                }
+    	});
 		});
 	});
 </script>

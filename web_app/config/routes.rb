@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :search_items, except: :show
     get '/search_items/:id', to: 'projects#show'
   end
+
+  resources :saved_results, only: [:create]
+  resources :deleted_results, only: [:create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
