@@ -207,8 +207,3 @@ DEPENDENCIES
   web-console (~> 2.0)
   whenever
 
-RUBY VERSION
-   ruby 2.1.4p265
-
-BUNDLED WITH
-   1.12.5

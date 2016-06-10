@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'dalli'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -24,17 +23,4 @@ module WebApp
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
-end
-
-CACHESEARCH = if ENV["RAILS_ENV"].eql?("production")
-    Dalli::Client.new((ENV["MEMCACHIER_SERVERS"] || "").split(","),
-                    {:username => ENV["MEMCACHIER_USERNAME"],
-                     :password => ENV["MEMCACHIER_PASSWORD"],
-                     :failover => true,
-                     :socket_timeout => 3,
-                     :expires_in => 1.day, 
-                     :compress => true
-                    })
-else
-    Dalli::Client.new('127.0.0.1', { :namespace => 'github_watcher', :expires_in => 1.day, :socket_timeout => 3, :compress => true })
 end
