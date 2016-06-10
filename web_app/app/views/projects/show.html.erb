@@ -58,7 +58,7 @@
 										  <div class="twelve columns report <%= 'selected-cache' if !compare_data(caches_search) %>" id="list-<%= caches_search[:id] %>">
 										      <div class="row link">
 										        <div class="twelve columns inner-report" style="position: relative;">
-										          <a href="#"><%= caches_search[:name] %>&nbsp;(<%= caches_search[:stars] %>)</a>
+										          <a href="#" class="click-caches-search" data-caches-search="<%=caches_search[:url]%>" data-caches-name="<%=caches_search[:name]%>"><%= caches_search[:name] %>&nbsp;(<%= caches_search[:stars] %>)</a>
 										          <%= check_box_tag "caches_search_ids", caches_search[:id], compare_data(caches_search) ? false : true, style: 'position: absolute;right: 5px;', class: 'caches_search', data:{caches_search_ids: caches_search[:id], search_items_id: search_items_id} %>
 										        </div>
 										      </div>
@@ -74,7 +74,7 @@
 								</div>
 							</div>
 							<div class="four columns">
-								<div class="read-me">READ ME</div>
+								<div class="read-me"><a href="" id='read-me-href'><span id="read-me-cache-name"></span></a></div>
 							</div>
 						</div>
 					<% else %>
@@ -106,7 +106,7 @@
 										</div>
 									</div>
 									<div class="four columns">
-										<div class="read-me">READ ME</div>
+										<div class="read-me" target="_blank"><a href="<%= show_readme(sv)%>">README</a></div>
 									</div>
 								</div>
 							<% end %>
@@ -137,7 +137,7 @@
 										</div>
 									</div>
 									<div class="four columns">
-										<div class="read-me">READ ME</div>
+										<div class="read-me" target="_blank"><a href="<%= show_readme(dl)%>">README</a></div>
 									</div>
 								</div>
 							<% end %>
@@ -191,6 +191,26 @@
          					console.log('Ajax success!!')
          					$($obj.data("target")).remove();
          					location.reload();
+                },
+          error: function() {
+                  console.log('Ajax error!!')
+                }
+    	});
+		});
+	});
+
+	$(function(){
+		$('.click-caches-search').click(function(){
+			var cache = $(this).data('caches-search')
+			var cache_name = 'README FROM '+$(this).data('caches-name').toUpperCase()
+			$.ajax({
+             url: "<%= show_readme_path %>",
+            type: "GET",
+        dataType: "json",
+            data: { cache_href: cache},
+         success: function(data) {
+         					$('#read-me-href').attr('href', data.readme_url);
+									$('#read-me-cache-name').html(cache_name)
                 },
           error: function() {
                   console.log('Ajax error!!')

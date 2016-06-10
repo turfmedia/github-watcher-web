@@ -33,4 +33,17 @@ module ApplicationHelper
       ""
     end
   end
+
+  #show readme
+  def show_readme(cache)
+    repo_url    = cache[:url] || cache[:repo_url]
+    url_readme = '#'
+    unless repo_url.blank?
+      #request to repo for get readme link/url
+      get_readme  =  Octokit.readme(repo_url.split('https://github.com/').last)
+      url_readme = get_readme[:html_url]
+    end
+    
+    return url_readme
+  end
 end

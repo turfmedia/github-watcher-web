@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :search_items, except: :show
     get '/search_items/:id', to: 'projects#show'
   end
+  get 'show_readme', to: 'projects#show_readme', as: :show_readme
 
   resources :saved_results, only: [:create]
   resources :deleted_results, only: [:create]
