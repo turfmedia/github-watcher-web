@@ -1,6 +1,6 @@
 class SearchItem < ActiveRecord::Base
 	
-	validates :topic, presence: true, length: { minimum:5 }
+	validates :topic, presence: true
 	
 	belongs_to :project
 

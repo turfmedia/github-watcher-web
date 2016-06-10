@@ -3,34 +3,35 @@
 		<div class="main">
 			<div class="row">
 				<div class="twelve columns">
-				<% if !params[:controller].eql? "users" and !params[:action].eql? "projects" %>
-					<div class="dropdown nav">
-						<% if params[:controller].eql? "projects" and params[:action].eql? "show" %>
-							<% if params[:project_id].blank? %>
-								<button class="button-primary"><%= current_user.projects.find(params[:id]).name.titleize %></button>
-							<% else %>
-								<button class="button-primary"><%= current_user.projects.find(params[:project_id]).name.titleize %></button>
-							<% end %>
-						<% else %>
-							<button class="button-primary">Select Project</button>
-						<% end %>
-						<ul class="dropdown-content">
-							<% current_user.projects.each do |project| %>
+					<% if !params[:controller].eql? "users" and !params[:action].eql? "projects" %>
+						<div class="dropdown nav">
+							<% if params[:controller].eql? "projects" and params[:action].eql? "show" %>
 								<% if params[:project_id].blank? %>
-									<% if !project.id.eql? params[:id].to_i %>
-										<li><%= link_to project.name.titleize, project_path(project) %></li>
-									<% end %>
+									<button class="button-primary"><%= current_user.projects.find(params[:id]).name.titleize %></button>
 								<% else %>
-									<% if !project.id.eql? params[:project_id].to_i %>
-										<li><%= link_to project.name.titleize, project_path(project) %></li>
+									<button class="button-primary"><%= current_user.projects.find(params[:project_id]).name.titleize %></button>
+								<% end %>
+							<% else %>
+								<button class="button-primary">Select Project</button>
+							<% end %>
+							<ul class="dropdown-content">
+								<% current_user.projects.each do |project| %>
+									<% if params[:project_id].blank? %>
+										<% if !project.id.eql? params[:id].to_i %>
+											<li><%= link_to project.name.titleize, project_path(project) %></li>
+										<% end %>
+									<% else %>
+										<% if !project.id.eql? params[:project_id].to_i %>
+											<li><%= link_to project.name.titleize, project_path(project) %></li>
+										<% end %>
 									<% end %>
 								<% end %>
-							<% end %>
-							<li class="add-project"><%= link_to "Add New Project", new_project_path %></li>
-						</ul>
-					</div>
-				<% end %>
+								<li class="add-project"><%= link_to "Add New Project", new_project_path %></li>
+							</ul>
+						</div>
+					<% end %>
 					<div class="profile">
+						<%= link_to "#{current_user.name}", current_user %>&nbsp; || &nbsp;
 						<%= link_to "Signout", signout_path %>
 					</div>
 				</div>
