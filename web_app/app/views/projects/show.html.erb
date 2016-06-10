@@ -64,8 +64,8 @@
 										      </div>
 										      <div class="row">
 										        <div class="twelve   columns inner-report" style="position: relative;">
-										          <%= caches_search[:description] %>
-										          <a href="#" class="caches_search_delete" data-target="#list-<%= caches_search[:id] %>" data-caches-search-ids="<%= caches_search[:id]%>" data-search-items-id="<%= search_items_id %>" style="position: absolute;right: 5px;"><i class="fa fa-trash"></i></a>
+										          <div style="width:95%"><%= caches_search[:description] %></div>
+										          <div><a href="#" class="caches_search_delete" data-target="#list-<%= caches_search[:id] %>" data-caches-search-ids="<%= caches_search[:id]%>" data-search-items-id="<%= search_items_id %>" style="position: absolute;right: 5px;top: 0px;"><i class="fa fa-trash"></i></a></div>
 										        </div>
 										      </div>
 										  </div>
@@ -74,7 +74,7 @@
 								</div>
 							</div>
 							<div class="four columns">
-								<div class="read-me"><a href="" id='read-me-href'><span id="read-me-cache-name"></span></a></div>
+								<div class="read-me"><a href="" id='read-me-href' target="_blank"><span id="read-me-cache-name"></span></a></div>
 							</div>
 						</div>
 					<% else %>
@@ -106,7 +106,7 @@
 										</div>
 									</div>
 									<div class="four columns">
-										<div class="read-me" target="_blank"><a href="<%= show_readme(sv)%>">README</a></div>
+										<div class="read-me"><a href="<%= show_readme(sv)%>" target="_blank">README</a></div>
 									</div>
 								</div>
 							<% end %>
@@ -137,7 +137,7 @@
 										</div>
 									</div>
 									<div class="four columns">
-										<div class="read-me" target="_blank"><a href="<%= show_readme(dl)%>">README</a></div>
+										<div class="read-me"><a href="<%= show_readme(dl)%>" target="_blank">README</a></div>
 									</div>
 								</div>
 							<% end %>
