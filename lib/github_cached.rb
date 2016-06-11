@@ -18,28 +18,25 @@ module GithubCached
   end
 
   def self.get(key)
-    client.get(key)
+    client.get(key.to_s)
   end
 
   def self.set(key, data, ttl)
-    client.set(key, data, ttl)
+    client.set(key.to_s, data, ttl)
   end
 
-  def search
+  def self.search(token, terms, language = nil)
+    key = "#{terms.gsub(' ', '_')}_#{language}"
+    result = get(key)
+    if result.blank?
 
-      if (@caches_search = get(@search.id.to_s)).blank?
-        user_token = current_user.token
-        topic      = @search.topic
-        language   = @search.language
-        @search.update(date_request_cache: Time.now)
-        client_initialize = Github::Watcher::Client.new(user_token)
-        new_search = client_initialize.search(topic, language)
+      # @search.update(date_request_cache: Time.now)
+      client = Github::Watcher::Client.new(token)
+      result = client.search(terms, language)
 
-        # storing data to cache and set time out to delete data in one day
-        GithubCached.set("search_"+@search.id.to_s, new_search, 1.day)
-        caches_search = GithubCached.get("search_"+@search.id.to_s)
-      else
-        caches_search
-      end
+      # storing data to cache and set time out to delete data in one day
+      GithubCached.set(key, result, 1.day)
+    end
+    result
   end
 end

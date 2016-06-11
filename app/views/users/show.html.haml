@@ -1,0 +1,15 @@
+.container.content
+  .row
+    .twelve.column.center
+      %h3 User Profile
+      %div
+        Name :
+        %b= @user.name
+      %div
+        Username :
+        %b= @user.username
+      %div
+        Email :
+        %b= @user.email
+      %br/
+      = link_to 'Back', project_path(@user.projects.first)

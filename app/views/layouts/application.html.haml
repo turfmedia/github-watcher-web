@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Project
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "ie=edge", "http-equiv" => "x-ua-compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    = csrf_meta_tags
+  %body
+    = render 'layouts/navigation'
+    = load_flash_message
+    = yield
+  :javascript
+    setTimeout("$('#flash-alert').fadeOut('slow')", 4500)

@@ -1,7 +1,8 @@
 web:
   build: .
+  command: bundle exec guard -p
   volumes:
-    - .:/www
+    - .:/app
   ports:
     - 7580:3000
   links:

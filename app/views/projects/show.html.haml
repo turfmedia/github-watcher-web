@@ -1,0 +1,28 @@
+%section.main
+  .row.padding
+    .swap-left
+      = form_for([@project, @project.search_items.build]) do |f|
+        .five.columns.search
+          .form-search
+            %i.fa.fa-search
+            = f.text_field :topic, class: "search-box", placeholder: "Topic..."
+        .three.columns.tabs
+          = f.select :language, options_for_select([["Language", ""], 'ruby', 'go', 'javascript', 'rust' , 'java'])
+        .three.columns.tabs
+          = f.submit "Add", class: "button-primary"
+    .swap-right
+      .five.columns.tabs
+        %input#tab1{:checked => "checked", "data-target" => "#searches", :name => "tabs", :type => "radio"}/
+        %label{:for => "tab1"} Search
+        %input#tab2{"data-target" => "#saved", :name => "tabs", :type => "radio"}/
+        %label{:for => "tab2"} Saved
+        %input#tab3{"data-target" => "#deleted", :name => "tabs", :type => "radio"}/
+        %label{:for => "tab3"} Deleted
+  .row
+    .twelve.columns.section-content
+      %section#searches.content-datas
+        = render 'searches'
+      %section#saved.content-datas
+        = render 'saved'
+      %section#deleted.content-datas
+        = render 'deleted'

@@ -1,0 +1,10 @@
+.container.content
+  .row
+    .twelve.column.center
+      %h2 Selecting Project
+      .dropdown
+        %button.button-primary.select Select Project
+        .dropdown-content
+          - @projects.each do |project|
+            = link_to project.name, project_path
+          = link_to "Add New Project", new_project_path

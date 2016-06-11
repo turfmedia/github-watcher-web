@@ -1,0 +1,25 @@
+- if @saved_results_by_project.blank?
+  %h6.noresult
+    No saved results from topic #{search_item_topic(@search_items_id.to_i)}
+- else
+  - @saved_results_by_project.each do |sv|
+    - if search_items_id.to_i == sv.search_items_id
+      .row{:id => "list-#{sv.repo_id}"}
+        .five.columns
+          .row
+            .twelve.columns.report
+              .row.link
+                .twelve.columns.inner-report{:style => "position: relative;"}
+                  %a.click-caches-search-saved{"data-cache" => "read-me-cache-name-saved", "data-caches-name" => "#{sv.repo_title}", "data-caches-search" => "#{sv.repo_url}", "data-link" => "read-me-href-saved", :href => "#"}
+                    = sv.repo_title
+                     (#{sv.repo_stars})
+              .row
+                .twelve.columns.inner-report{:style => "position: relative;"}
+                  = sv.repo_description
+                  %a.caches_search_delete{"data-caches-search-ids" => "#{sv.repo_id}", "data-search-items-id" => search_items_id, "data-target" => "#list-#{sv.repo_id}", :href => "#", :style => "position: absolute;right: 5px;"}
+                    %i.fa.fa-trash
+        .four.columns
+          .read-me
+            %a#read-me-href-saved{:href => "", :target => "_blank"}
+              %span#read-me-cache-name-saved
+          / <div class="read-me"><a href="<haml_silent></haml_silent>" target="_blank">README</a></div>

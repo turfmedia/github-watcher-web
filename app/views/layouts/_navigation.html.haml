@@ -1,0 +1,27 @@
+- if current_user
+  %nav.header
+    .main
+      .row
+        .twelve.columns
+          - if !params[:controller].eql? "users" and !params[:action].eql? "projects"
+            .dropdown.nav
+              - if params[:controller].eql? "projects" and params[:action].eql? "show"
+                - if params[:project_id].blank?
+                  %button.button-primary= current_user.projects.find(params[:id]).name.titleize
+                - else
+                  %button.button-primary= current_user.projects.find(params[:project_id]).name.titleize
+              - else
+                %button.button-primary Select Project
+              %ul.dropdown-content
+                - current_user.projects.each do |project|
+                  - if params[:project_id].blank?
+                    - if !project.id.eql? params[:id].to_i
+                      %li= link_to project.name.titleize, project_path(project)
+                  - else
+                    - if !project.id.eql? params[:project_id].to_i
+                      %li= link_to project.name.titleize, project_path(project)
+                %li.add-project= link_to "Add New Project", new_project_path
+          .profile
+            = link_to "#{current_user.name}", current_user
+              ||  
+            \#{link_to "Signout", signout_path}

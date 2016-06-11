@@ -1,0 +1,12 @@
+.container
+  .row
+    .twelve.columns.center
+      %h2 New Project
+      .row
+        .three.columns
+           
+        .six.columns
+          = form_for @project, :html => { class: "input-custom"} do |f|
+            = f.hidden_field :user_id, :value => current_user.id
+            = f.text_field :name, class: "u-full-width", placeholder: "name of project"
+            = f.submit class:"button-primary"

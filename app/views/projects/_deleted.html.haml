@@ -1,0 +1,22 @@
+- if @deleted_results_by_project.blank?
+  %h6.noresult
+    No deleted results from topic #{search_item_topic(@search_items_id.to_i)}
+- else
+  - @deleted_results_by_project.each do |dl|
+    - if search_items_id.to_i == dl.search_items_id
+      .row
+        .five.columns
+          .row
+            .twelve.columns.report
+              .row.link
+                .twelve.columns.inner-report{:style => "position: relative;"}
+                  %a.click-caches-search-deleted{"data-cache" => "read-me-cache-name-deleted", "data-caches-name" => "#{dl.repo_title}", "data-caches-search" => "#{dl.repo_url}", "data-link" => "read-me-href-deleted", :href => "#"}
+                    = dl.repo_title
+                     (#{dl.repo_stars})
+              .row
+                .twelve.columns.inner-report{:style => "position: relative;"}
+                  = dl.repo_description
+        .four.columns
+          .read-me
+            %a#read-me-href-deleted{:href => "", :target => "_blank"}
+              %span#read-me-cache-name-deleted

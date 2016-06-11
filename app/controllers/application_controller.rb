@@ -8,19 +8,20 @@ class ApplicationController < ActionController::Base
 
   #request to github to get repos based on search fields
   def github_get_repos
-    begin
-      unless params[:controller] == 'search_items' && params[:action] == 'create'
-        if params[:project_id].blank?
-          @search = Project.find(params[:id]).search_items.last
-        else
-          @search = SearchItem.find(params[:id])
-        end
+    unless params[:controller] == 'search_items' && params[:action] == 'create'
+      if params[:project_id].blank?
+        @search = Project.find(params[:id]).search_items.last
+      else
+        @search = SearchItem.find(params[:id])
       end
-      @caches_search
-      # getting data from cache
-
-    rescue Exception => e
     end
+    if params[:project_id].blank?
+      @search_items_id = Project.find(params[:id]).search_items.last.id
+    else
+      @search_items_id = params[:id]
+    end
+    @search
+
   end
 
   private

@@ -6,10 +6,11 @@ class ProjectsController < ApplicationController
 		@projects = Project.all
 	end
 
-
 	def show
 		@search_items = @project.search_items.order('created_at DESC')
+		@searches = []
 		github_get_repos
+
 		@saved_results_by_project = @project.saved_results.order('created_at DESC')
 		@deleted_results_by_project = @project.deleted_results.order('created_at DESC')
 	end
@@ -39,8 +40,8 @@ class ProjectsController < ApplicationController
     	repo_url    = params[:cache_href]
       # request to repo for get readme link/url
       get_readme  =  Octokit.readme(repo_url.split('https://github.com/').last)
-      @url_readme = get_readme[:html_url]   	
-    	
+      @url_readme = get_readme[:html_url]
+
     	render json: {readme_url: @url_readme, status: 200}
     rescue Exception => e
     	flash[:error] = 'Rate limit/to many request. Please wait.'
@@ -50,7 +51,7 @@ class ProjectsController < ApplicationController
 	private
 
 	def search_params
-		params.require(:search).permit(:topic, :language, :project_id) 
+		params.require(:search).permit(:topic, :language, :project_id)
 	end
 
 

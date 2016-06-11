@@ -18,7 +18,14 @@ class SearchItemsController < ApplicationController
 
 	#show search item
 	def show
-		github_get_repos
+		@search_items_id = params[:id]
+		@search = SearchItem.find(params[:id])
+		if params[:project_id].blank?
+      @search_items_id = Project.find(params[:id]).search_items.last.id
+    else
+
+    end
+
 	end
 
 	private
@@ -26,10 +33,10 @@ class SearchItemsController < ApplicationController
   def find_search_item
   	@search_item = SearchItem.find(params[:id])
   end
-	
-	#params search item(fields of search items)  
+
+	#params search item(fields of search items)
 	def search_params
-		params.require(:search_item).permit(:topic, :language, :project_id) 
+		params.require(:search_item).permit(:topic, :language, :project_id)
 	end
 
 end
