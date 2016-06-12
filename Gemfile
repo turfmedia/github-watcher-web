@@ -8,7 +8,7 @@ gem 'rails', '4.2.5'
 gem 'pg'
 gem 'haml-rails'
 gem "omniauth-github", '1.1.1'
-gem 'github-watcher', github: "sbusso/github-watcher", :ref => "ed29ab5"
+gem 'github-watcher', github: "sbusso/github-watcher"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

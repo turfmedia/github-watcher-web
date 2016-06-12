@@ -1,4 +1,5 @@
 require 'dalli'
+require 'open-uri'
 
 module GithubCached
   def self.client
@@ -23,6 +24,16 @@ module GithubCached
 
   def self.set(key, data, ttl)
     client.set(key.to_s, data, ttl)
+  end
+
+  def self.readme(repo_name)
+    result = get(repo_name)
+    if result.blank?
+      readme_url = JSON.parse(Net::HTTP.get(URI("https://api.github.com/repos/#{repo_name}/readme")))['html_url']
+		  result = Nokogiri::HTML(open(readme_url)).css('#readme').to_html
+      set(repo_name, result, 1.day)
+    end
+    result
   end
 
   def self.search(token, terms, language = nil)

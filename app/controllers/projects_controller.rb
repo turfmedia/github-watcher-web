@@ -35,17 +35,8 @@ class ProjectsController < ApplicationController
 	end
 
 	#show readme
-  def show_readme
-    begin
-    	repo_url    = params[:cache_href]
-      # request to repo for get readme link/url
-      get_readme  =  Octokit.readme(repo_url.split('https://github.com/').last)
-      @url_readme = get_readme[:html_url]
-
-    	render json: {readme_url: @url_readme, status: 200}
-    rescue Exception => e
-    	flash[:error] = 'Rate limit/to many request. Please wait.'
-    end
+  def readme
+		render text: GithubCached.readme(URI.unescape params[:reference])
   end
 
 	private

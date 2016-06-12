@@ -1,33 +1,17 @@
 - if @search_items.count > 0
   .row
-    .three.columns
+    .two.columns
       .row
         - @search_items.each do |item|
-          %div{class: "twelve columns result-search report #{'active' if (item.id == params[:id].to_i)}", :id => "item_#{item.id}"}
+          %div{class: "twelve columns result-search report #{'active' if (item.id == params[:id].to_i)}", :id => "item-#{item.id}"}
             %a{:href => "#{project_search_item_path(item.project_id, item.id)}"}
               = item.topic
 
-    .five.columns
-      .row
-        - @search.results.each do |caches_search|
-          - if include_in_deleted_result?(caches_search)
-            %div{:class => "twelve columns report #{'selected-cache' if !compare_data(caches_search)}", :id => "list-#{caches_search[:id]}"}
-              .row.link
-                .twelve.columns.inner-report{:style => "position: relative;"}
-                  %b
-                    %a.click-caches-search{"data-cache" => "read-me-cache-name", "data-caches-name" => "#{caches_search[:name]}", "data-caches-search" => "#{caches_search[:url]}", "data-link" => "read-me-href", :href => "#"}
-                      = caches_search[:name]
-                  (#{caches_search[:stars]})
-                  = check_box_tag "caches_search_ids", caches_search[:id], compare_data(caches_search) ? false : true, style: 'position: absolute;right: 5px;', class: 'caches_search', data:{caches_search_ids: caches_search[:id], search_items_id: @search_items_id}
-              .row
-                .twelve.columns.inner-report{:style => "position: relative;"}
-                  %div{:style => "width:95%"}= caches_search[:description]
-                  %div
-                    %a.caches_search_delete{"data-caches-search-ids" => "#{caches_search[:id]}", "data-search-items-id" => @search_items_id, "data-target" => "#list-#{caches_search[:id]}", :href => "#", :style => "position: absolute;right: 5px;top: 0px;"}
-                      %i.fa.fa-trash
     .four.columns
-      .read-me
-        %a#read-me-href{:href => "", :target => "_blank"}
-          %span#read-me-cache-name
+      .row
+        = render partial: 'repo', collection: @search.results
+
+    .six.columns
+      #readme
 - else
   %h6.noresult No Search Item

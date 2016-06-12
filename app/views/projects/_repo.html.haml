@@ -1,0 +1,15 @@
+- unless is_deleted?(repo)
+  %div{:class => "twelve columns report #{'selected-cache' if is_selected?(repo)}", :id => "repo-#{repo[:id]}"}
+    .row.link
+      .twelve.columns.inner-report{:style => "position: relative;"}
+        %b
+          %a.repo_readme{ data: {reference: "#{repo[:reference]}"}, :href => "#"}
+            = repo[:name]
+        (#{repo[:stars]})
+        = check_box_tag "repo_ids", repo[:id], is_selected?(repo), style: 'position: absolute;right: 5px;', class: 'repo_save', data:{'repo-id' => repo[:id], 'search-items-id' => @search_items_id}
+    .row
+      .twelve.columns.inner-report{:style => "position: relative;"}
+        %div{:style => "width:95%"}= repo[:description]
+        %div
+          %a.repo_delete{:href => "#", data: { repo_id: repo[:id], project_id: @search.project.id} , :style => "position: absolute;right: 5px;top: 0px;"}
+            %i.fa.fa-trash

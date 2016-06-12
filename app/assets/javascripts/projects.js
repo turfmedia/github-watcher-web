@@ -7,44 +7,64 @@ $(function () {
     $($(this).data('target')).show();
   });
 
-  $('.caches_search').click(function () {
-    var $obj = $(this);
+  var deleteRepo = function (data) {
+    var repoId = data['repoId'];
     $.ajax({
-      url: "#{saved_results_path}",
+      url: "/deleted_results",
       type: "POST",
       dataType: "json",
       data: {
-        caches_search_ids: $(this).data('caches-search-ids'),
-        checked: $(this).prop('checked'),
-        search_items_id: $(this).data('search-items-id')
+        projectId: data['projectId'],
+        repoId: repoId
       },
       success: function (data) {
-        $($obj.data("target")).addClass('choose-cache')
-        console.log('Ajax success!!')
-        location.reload();
+        $("#repo-"+repoId).remove();
+        console.log('success delete repo '+repoId)
       }
     });
+  }
+
+  var saveRepo = function (data) {
+    var repoId = data['repoId'];
+    $.ajax({
+      url: "/saved_results",
+      type: "POST",
+      dataType: "json",
+      data: {
+        projectId: data['projectId'],
+        repoId: repoId
+      },
+      success: function (data) {
+        $("#repo-"+repoId).addClass('selected');
+        console.log('success delete repo '+repoId)
+      }
+    });
+  }
+
+  var readMe = function (data) {
+    $.ajax({
+      url: "/readme",
+      type: "GET",
+      dataType: "html",
+      data: {
+        reference: data['reference'],
+      },
+      success: function (data) {
+        $('#readme').replaceWith(data)
+      }
+    });
+  }
+
+  $('.repo_save').click(function () {
+    saveRepo($(this).data())
   });
 
-  $('.caches_search_delete').click(function () {
-    var $obj = $(this);
-    $.ajax({
-      url: "#{deleted_results_path}",
-      type: "POST",
-      dataType: "json",
-      data: {
-        caches_search_ids: $(this).data('caches-search-ids'),
-        search_items_id: $(this).data('search-items-id')
-      },
-      success: function (data) {
-        console.log('Ajax success!!')
-        $($obj.data("target")).remove();
-        location.reload();
-      },
-      error: function () {
-        console.log('Ajax error!!')
-      }
-    });
+  $('.repo_delete').click(function () {
+    deleteRepo($(this).data())
+  });
+
+  $('.repo_readme').click(function () {
+    readMe($(this).data())
   });
 
   $('.click-caches-search, .click-caches-search-saved, .click-caches-search-deleted').click(function () {

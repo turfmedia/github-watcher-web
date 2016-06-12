@@ -14,20 +14,20 @@ module ApplicationHelper
   end
 
   # compare cache data with saved result
-  def compare_data(caches_search)
-    saved_result_data = SavedResult.find_by(repo_id: caches_search[:id])
-    return saved_result_data.blank?
+  def is_selected?(repo)
+    saved_result_data = SavedResult.find_by(repo_id: repo[:id])
+    return !saved_result_data.blank?
   end
 
   # check cache data include in deleted result or not
-  def include_in_deleted_result?(caches_search)
-    deleted_result_data = DeletedResult.find_by(repo_id: caches_search[:id])
-    return deleted_result_data.blank?
+  def is_deleted?(repo)
+    deleted_result_data = DeletedResult.find_by(repo_id: repo[:id])
+    return !deleted_result_data.blank?
   end
 
   # get search items name
   def search_item_topic(search_item)
-    search_item_topic = begin 
+    search_item_topic = begin
       SearchItem.find(search_item).topic
     rescue
       ""
@@ -44,7 +44,7 @@ module ApplicationHelper
   #       get_readme  =  Octokit.readme(repo_url.split('https://github.com/').last)
   #       url_readme = get_readme[:html_url]
   #     end
-      
+
   #     return url_readme
   #   rescue Exception => e
   #     flash[:error] = 'Rate limit/to many request. Please wait.'
