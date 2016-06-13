@@ -205,10 +205,16 @@ a .result-search:hover{
 	background-color: #F3F3F3;
 }
 
-.report .fa{
+.report .fa.fa-trash{
 	color: #F73C53;
-	font-size: 22px;
+	font-size: 18px;
 }
+
+.report .fa.fa-external-link{
+	color: #3694FF;
+	font-size: 14px;
+}
+
 
 .report:hover{
 	background-color: rgba(58,161,195,.1);

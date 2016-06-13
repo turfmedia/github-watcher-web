@@ -7,11 +7,11 @@
             %a{:href => "#{project_search_item_path(item.project_id, item.id)}"}
               = item.topic
 
-    .four.columns
+    .five.columns
       .row
         = render partial: 'repo', collection: @search.results
 
-    .six.columns
+    .five.columns
       #readme
 - else
   %h6.noresult No Search Item

@@ -29,8 +29,8 @@ module GithubCached
   def self.readme(repo_name)
     result = get(repo_name)
     if result.blank?
-      readme_url = JSON.parse(Net::HTTP.get(URI("https://api.github.com/repos/#{repo_name}/readme")))['html_url']
-		  result = Nokogiri::HTML(open(readme_url)).css('#readme').to_html
+      # readme_url = JSON.parse(Net::HTTP.get(URI("https://api.github.com/repos/#{repo_name}/readme")))['html_url']
+		  result = Nokogiri::HTML(open("https://github.com/#{repo_name}")).css('#readme > article').to_html
       set(repo_name, result, 1.day)
     end
     result

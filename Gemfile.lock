@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/sbusso/github-watcher.git
-  revision: 42fae0f60e6bf30560982af2a20efd4d36e16925
+  revision: 53665253cb2012131dc988f6205efa85ae79cde6
   specs:
     github-watcher (0.1.0)
       liquid

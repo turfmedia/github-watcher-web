@@ -50,7 +50,7 @@ $(function () {
         reference: data['reference'],
       },
       success: function (data) {
-        $('#readme').replaceWith(data)
+        $('#readme').html(data)
       }
     });
   }
