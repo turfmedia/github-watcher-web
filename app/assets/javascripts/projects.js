@@ -3,7 +3,7 @@ $(function () {
   $("#searches").show();
 
   $("input[name='tabs']").click(function () {
-    $('.content-datas').hide();
+    $('.content-data').hide();
     $($(this).data('target')).show();
   });
 
@@ -27,16 +27,43 @@ $(function () {
   var saveRepo = function (data) {
     var repoId = data['repoId'];
     $.ajax({
-      url: "/saved_results",
+      url: "/projects/"+ data['projectId'] +"/saved_results",
       type: "POST",
       dataType: "json",
       data: {
-        projectId: data['projectId'],
-        repoId: repoId
+        repo_title: data['repoTitle'],
+        repo_url: data['repoUrl'],
+        repo_description: data['repoDescription'],
+        repo_stars: data['repoStars'],
+        issues: data['repoIssues'],
+        pushed_at: data['repoPushedAt'],
+        search_items_id: data['searchItemsId'],
+        repo_id: repoId
       },
       success: function (data) {
+        for_clone = $("#repo-"+repoId).clone().attr('id', "saved_repo-"+repoId)
+        $('.saved-repos').prepend(for_clone)
+        $('.noresult').hide()
         $("#repo-"+repoId).addClass('selected');
-        console.log('success delete repo '+repoId)
+        console.log('success save repo '+repoId)
+      }
+    });
+  }
+
+  var unsaveRepo = function (data) {
+    var repoId = data['repoId'];
+    $.ajax({
+      url: "/projects/"+ data['projectId'] +"/saved_results/" + repoId,
+      type: "DELETE",
+      dataType: "json",
+      success: function (data) {
+        $("#saved_repo-"+repoId).remove()
+        $('.noresult').hide()
+        if ($('.saved-repo').length == 0) {
+          $('.noresult').show()
+        }
+        $("#repo-"+repoId).removeClass('selected');
+        console.log('success unsave repo '+repoId)
       }
     });
   }
@@ -50,13 +77,19 @@ $(function () {
         reference: data['reference'],
       },
       success: function (data) {
-        $('#readme').html(data)
+        $('.read-me:visible').html(data)
       }
     });
   }
 
-  $('.repo_save').click(function () {
-    saveRepo($(this).data())
+  $('.repo_save').click(function (e) {
+    if ($(e.target).attr('checked')){
+      $(e.target).attr('checked', null)
+      unsaveRepo($(this).data())
+    }else{
+      $(e.target).attr('checked', 'checked')
+      saveRepo($(this).data())
+    }
   });
 
   $('.repo_delete').click(function () {

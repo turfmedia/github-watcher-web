@@ -16,6 +16,9 @@
 .repl_history
 build/
 
+.DS_Store
+*/**/.DS_Store
+
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/

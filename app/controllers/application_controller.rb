@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
       end
     end
     if params[:project_id].blank?
-      @search_items_id = Project.find(params[:id]).search_items.last.id
+      @search_items_id = Project.find(params[:id]).search_items.last.try(:id)
     else
       @search_items_id = params[:id]
     end
@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
 
   #find a user with user session
   def current_user
+    session[:user_id] = User.first.id
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 end

@@ -5,7 +5,7 @@
   .row
     .five.columns
       .row
-        = render partial: 'repo', collection: @deleted_results_by_project
+        = render partial: 'saved_repo', collection: @deleted_results_by_project
     .four.columns
       .read-me
         %a#read-me-href-saved{:href => "", :target => "_blank"}

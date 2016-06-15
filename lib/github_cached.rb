@@ -19,18 +19,20 @@ module GithubCached
   end
 
   def self.get(key)
-    client.get(key.to_s)
+    # client.get(key.to_s)
+    nil
   end
 
   def self.set(key, data, ttl)
-    client.set(key.to_s, data, ttl)
+    # client.set(key.to_s, data, ttl)
+    nil
   end
 
   def self.readme(repo_name)
     result = get(repo_name)
     if result.blank?
       # readme_url = JSON.parse(Net::HTTP.get(URI("https://api.github.com/repos/#{repo_name}/readme")))['html_url']
-		  result = Nokogiri::HTML(open("https://github.com/#{repo_name}")).css('#readme > article').to_html
+      result = Nokogiri::HTML(open("https://github.com/#{repo_name}")).css('#readme > article').to_html
       set(repo_name, result, 1.day)
     end
     result
@@ -39,8 +41,8 @@ module GithubCached
   def self.search(token, terms, language = nil)
     key = "#{terms.gsub(' ', '_')}_#{language}"
     result = get(key)
+    result = nil
     if result.blank?
-
       # @search.update(date_request_cache: Time.now)
       client = Github::Watcher::Client.new(token)
       result = client.search(terms, language)

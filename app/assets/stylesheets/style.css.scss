@@ -1,17 +1,17 @@
 /*page 1*/
 body{
-	margin: 0;
+  margin: 0;
 }
 .content{
-	padding-top: 10%;
+  padding-top: 10%;
 }
 
 .center{
-	text-align: center;
+  text-align: center;
 }
 
 .center img{
-	width: 30%;
+  width: 30%;
 }
 
 .dropdown {
@@ -42,40 +42,40 @@ body{
 }
 
 .dropdown .button-primary.select{
-	padding: 10px 0px;
-	width: 300px;
-	margin-bottom: 0;
-	font-size: 18px;
-	height: auto;
+  padding: 10px 0px;
+  width: 300px;
+  margin-bottom: 0;
+  font-size: 18px;
+  height: auto;
 }
 .dropdown.nav{
-	.button-primary.projects {
-		width: 250px;
-		margin-bottom: 0;
-		font-size: 18px;
-	}
-	.button-primary{
-		width: 250px;
-		height: auto;
-	}
-	.dropdown-content{
-		list-style: none;
-		width: 100%;
-		z-index: 2;
-		 a {
-		    color: black;
-		    text-decoration: none;
-		    display: block;
-		    font-size: 14px;
-			padding: 0 15px;
-		}
-	}
-	.add-project{
-		// background: #33C3F0;
-		&:before{
+  .button-primary.projects {
+    width: 250px;
+    margin-bottom: 0;
+    font-size: 18px;
+  }
+  .button-primary{
+    width: 250px;
+    height: auto;
+  }
+  .dropdown-content{
+    list-style: none;
+    width: 100%;
+    z-index: 2;
+     a {
+        color: black;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+      padding: 0 15px;
+    }
+  }
+  .add-project{
+    // background: #33C3F0;
+    &:before{
 
-		}
-	}
+    }
+  }
 }
 
 /*end page 1*/
@@ -83,11 +83,11 @@ body{
 /*page 2*/
 
 .input-custom input[type="submit"]{
-	float: right;
+  float: right;
 }
 
 .input-custom input[type="text"]{
-	font-size: 16px;
+  font-size: 16px;
 }
 
 /*end page 2*/
@@ -95,271 +95,271 @@ body{
 /*page 3*/
 
 .contain{
-	margin: 0;
+  margin: 0;
 }
 
 .padding {
-	padding-top: 30px;
+  padding-top: 30px;
 }
 
 form{
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .header{
-	background-color: #F3F3F3;
-	border-bottom: 1px solid #E4E4E4;
-	/*margin: -8px;*/
-	height: 60px;
-	line-height: 60px;
+  background-color: #F3F3F3;
+  border-bottom: 1px solid #E4E4E4;
+  /*margin: -8px;*/
+  height: 60px;
+  line-height: 60px;
 }
 
 .projects{
-	/*margin-left: 20px;*/
+  /*margin-left: 20px;*/
 }
 
 *, *:before, *:after{
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .tabs input[type='radio']{
-	display: none;
+  display: none;
 }
 
 .tabs label{
-	display: inline-block;
-	margin: 0 0 -1px;
-	padding: 15px 25px;
-	font-weight: 600;
-	text-align: center;
-	color: #bbb;
-	border: 1px  solid transparent;
-	position: relative;
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px  solid transparent;
+  position: relative;
 }
 
 .tabs label:hover{
-	cursor: pointer;
-	color: #888;
-	position: relative;
+  cursor: pointer;
+  color: #888;
+  position: relative;
 }
 
 .tabs input:checked + label{
-	color: #555;
-	border: 1px solid #ddd;
-	border-top: 2px solid #33C3F0;
-	border-bottom: 1px solid #fff;
-	position: relative;
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid #33C3F0;
+  border-bottom: 1px solid #fff;
+  position: relative;
 }
 
 #tab1:checked ~ #content1,
 #tab2:checked ~ #content2,
 #tab3:checked ~ #content3{
-	display: block;
+  display: block;
 }
 
 .section-content section{
-	display: none;
-	border-top: 1px solid #ddd;
+  display: none;
+  border-top: 1px solid #ddd;
 }
 
 /*.form-search{
-	border: 1px solid #33C3F0;
-	border-radius: 4px;
-	line-height: 35px;
-	padding: 0px 5px;
+  border: 1px solid #33C3F0;
+  border-radius: 4px;
+  line-height: 35px;
+  padding: 0px 5px;
 }*/
 
 .form-search{
-	position: relative;
-	width: 100%;
-	margin: auto;
+  position: relative;
+  width: 100%;
+  margin: auto;
 }
 
 .form-search .fa{
-	width: 8%;
+  width: 8%;
 }
 
 .form-search i{
-	position: absolute;
-	top: 10px;
-	left: 9px;
+  position: absolute;
+  top: 10px;
+  left: 9px;
 }
 
 .form-search input[type="text"]{
-	padding-left: 25px;
+  padding-left: 25px;
 }
 
 
 .result-search{
-	border-bottom: 1px solid #ddd;
-	padding: 10px;
-	color: #000;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  color: #000;
 }
 
 .report{
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 a .result-search:hover{
-	background-color: #F3F3F3;
+  background-color: #F3F3F3;
 }
 
 .report .fa.fa-trash{
-	color: #F73C53;
-	font-size: 18px;
+  color: #F73C53;
+  font-size: 18px;
 }
 
 .report .fa.fa-external-link{
-	color: #3694FF;
-	font-size: 14px;
+  color: #3694FF;
+  font-size: 14px;
 }
 
 
 .report:hover{
-	background-color: rgba(58,161,195,.1);
+  background-color: rgba(58,161,195,.1);
 }
 
 .selected{
-	background-color: rgba(237, 240, 51, 0.36);
+  background-color: rgba(237, 240, 51, 0.36);
 }
 
 .selected-cache{
-	background-color: rgba(237, 240, 51, 0.36);
+  background-color: rgba(237, 240, 51, 0.36);
 }
 
 .active{
-	background-color: rgba(51, 240, 223, 0.18);
+  background-color: rgba(51, 240, 223, 0.18);
 }
 
 .read-me{
-	padding: 20px 10px;
+  padding: 20px 10px;
 }
 
 .inner-report{
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .link a{
-	color: #000;
-	text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 
 .link a:hover{
-	color: #3694B1;
-	text-decoration: underline;
+  color: #3694B1;
+  text-decoration: underline;
 }
 
 .tabs select{
-	width: 100%;
+  width: 100%;
 }
 
 
 .swap-left{
-	float: right;
-	width: 36%;
+  float: right;
+  width: 36%;
 }
 
 /*end page 3*/
 @media (max-width: 940px) {
-	.form-search input[type="text"] {
-		/*width: 92%;*/
-	}
+  .form-search input[type="text"] {
+    /*width: 92%;*/
+  }
 
-	.tabs label{
-	    padding: 10px 15px;
-	}
+  .tabs label{
+      padding: 10px 15px;
+  }
 
-	.swap-left{
-		float: right;
-		width: 60%;
-	}
+  .swap-left{
+    float: right;
+    width: 60%;
+  }
 }
 
 @media (max-width: 750px) {
-	.form-search input[type="text"] {
-		width: 100%;
-	}
+  .form-search input[type="text"] {
+    width: 100%;
+  }
 
-	.tabs label{
-	    padding: 10px 15px;
-	}
+  .tabs label{
+      padding: 10px 15px;
+  }
 }
 
 @media (max-width: 549px) {
-	.tabs select{
-		margin-left: 15px;
-		width: 90%;
-	}
+  .tabs select{
+    margin-left: 15px;
+    width: 90%;
+  }
 
-	.tabs button{
-		margin-left: 15px;
-	}
+  .tabs button{
+    margin-left: 15px;
+  }
 
-	.form-search input[type="text"] {
-		width: 94%;
-	}
+  .form-search input[type="text"] {
+    width: 94%;
+  }
 
-	.form-search{
-		width: 96%;
-		margin-left: 15px;
-	}
+  .form-search{
+    width: 96%;
+    margin-left: 15px;
+  }
 
-	.swap-left{
-		float: right;
-		width: 100%;
-	}
+  .swap-left{
+    float: right;
+    width: 100%;
+  }
 
-	.swap-right{
-		float: right;
-		width: 100%;
-	}
+  .swap-right{
+    float: right;
+    width: 100%;
+  }
 }
 
 @media (max-width: 400px) {
-	.form-search{
-		margin: 0px 15px;
-	}
+  .form-search{
+    margin: 0px 15px;
+  }
 
-	.swap-right{
-		width: 100%;
-	}
+  .swap-right{
+    width: 100%;
+  }
 
-	.tabs select{
-		margin-left: 15px;
-		width: 92%;
-	}
+  .tabs select{
+    margin-left: 15px;
+    width: 92%;
+  }
 
-	.tabs button{
-		margin-left: 15px;
-	}
+  .tabs button{
+    margin-left: 15px;
+  }
 
-	.form-search input[type="text"] {
-		width: 94%;
-	}
+  .form-search input[type="text"] {
+    width: 94%;
+  }
 
-	.dropdown .button-primary{
-		width: 265px;
-	}
+  .dropdown .button-primary{
+    width: 265px;
+  }
 
-	.dropdown-content{
-		width: 265px;
-	}
+  .dropdown-content{
+    width: 265px;
+  }
 }
 .profile{
-	float: right;
+  float: right;
 }
 
 @media (min-width:1024px){
-	.main{
-		padding: 0 36px;
-	}
+  .main{
+    padding: 0 36px;
+  }
 
 }
 @media (min-width:320px){
-	.main{
-		padding: 0 20px;
-	}
+  .main{
+    padding: 0 20px;
+  }
 
 }
 #notice {
@@ -386,24 +386,24 @@ a .result-search:hover{
 }
 
 .alert-error {
-	background-color: #F2D7D5;
+  background-color: #F2D7D5;
   border-left-color: #C0392B;
   color: #C0392B;
   padding: 10px;
 }
 
 .alert-success {
-	background-color: #D5F5E3;
+  background-color: #D5F5E3;
   border-left-color: #2ECC71;
   color: #2ECC71;
   padding: 10px;
 }
 .noresult{
-	color: #a6a6a6;
-	text-align: center;
-	margin-top:100px;
+  color: #a6a6a6;
+  text-align: center;
+  margin-top:100px;
 }
 
 .content-data > .row > .columns {
-	margin-left: 10px;
+  margin-left: 10px;
 }

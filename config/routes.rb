@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   resources :projects do
     resources :search_items, except: :show
     get '/search_items/:id', to: 'projects#show'
+    resources :saved_results, only: [:create, :destroy], param: :repo_id
+    resources :deleted_results, only: [:create, :destroy], param: :repo_id
   end
   get '/readme', to: 'projects#readme', as: :readme
 
-  resources :saved_results, only: [:create]
-  resources :deleted_results, only: [:create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

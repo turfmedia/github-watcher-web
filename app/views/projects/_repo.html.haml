@@ -11,7 +11,7 @@
         (
         %i.fa.fa-star-o
         #{repo[:stars]})
-        = check_box_tag "repo_ids", repo[:id], is_selected?(repo), style: 'position: absolute;right: 5px;', class: 'repo_save', data:{'repo-id' => repo[:id], 'search-items-id' => @search_items_id}
+        = check_box_tag "repo_ids", repo[:id], is_selected?(repo), style: 'position: absolute;right: 5px;', class: 'repo_save', data:{'repo-id' => repo[:id], 'search-items-id' => @search_items_id, project_id: @project.id, 'repo-title' => repo[:name], 'repo-url' => repo[:url], 'repo-description' => repo[:description], 'repo-stars' => repo[:stars], 'search-items-id' => @search.id, 'repo-pushed_at' => repo[:pushed_at], 'repo-issues' => repo[:issues]}
         %a{href: "https://github.com/#{repo[:reference]}", target: 'blank'}
           %i.fa.fa-external-link
 
