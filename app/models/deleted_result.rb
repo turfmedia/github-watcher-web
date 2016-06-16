@@ -1,6 +1,10 @@
 class DeletedResult < ActiveRecord::Base
   belongs_to :project
 
+  def reference
+    repo_url.split('github.com/')[1]
+  end
+
   #create Deleted Result Object
   def self.create_object(project, select_caches_search, search_items_id)
     DeletedResult.create(

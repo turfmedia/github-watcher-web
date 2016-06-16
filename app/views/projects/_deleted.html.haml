@@ -1,12 +1,10 @@
-- if @deleted_results_by_project.blank? || true
-  %h6.noresult
-    No deleted results from topic #{search_item_topic(@search_items_id.to_i)}
-- else
-  .row
-    .five.columns
-      .row
-        = render partial: 'saved_repo', collection: @deleted_results_by_project
-    .four.columns
-      .read-me
-        %a#read-me-href-saved{:href => "", :target => "_blank"}
-          %span#read-me-cache-name-saved
+%h6.noresult-deleted{style: "#{@deleted_results_by_project.blank? ? '' : 'display: none'}"}
+  No deleted results from topic #{search_item_topic(@search_items_id.to_i)}
+.row
+  .five.columns
+    .row.deleted-repos
+      = render partial: 'saved_repo', collection: @deleted_results_by_project, as: :repo
+  .four.columns
+    .read-me
+      %a#read-me-href-saved{:href => "", :target => "_blank"}
+        %span#read-me-cache-name-saved

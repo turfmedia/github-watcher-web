@@ -1,5 +1,5 @@
 - unless is_deleted?(repo)
-  .twelve.columns.report{:class => "#{'selected-cache' if is_selected?(repo)}", :id => "repo-#{repo[:id]}"}
+  .twelve.columns.report.repo{:class => "#{'selected-cache' if is_selected?(repo)}", :id => "repo-#{repo[:id]}", data:{'repo-id' => repo[:id], 'search-items-id' => @search_items_id, project_id: @project.id, 'repo-title' => repo[:name], 'repo-url' => repo[:url], 'repo-description' => repo[:description], 'repo-stars' => repo[:stars], 'search-items-id' => @search.id, 'repo-pushed_at' => repo[:pushed_at], 'repo-issues' => repo[:issues]}}
     .row.link
       .twelve.columns.inner-report{:style => "position: relative;"}
         %a{href: "https://github.com/#{repo[:reference].split('/').first}", target: 'blank'}
@@ -11,7 +11,7 @@
         (
         %i.fa.fa-star-o
         #{repo[:stars]})
-        = check_box_tag "repo_ids", repo[:id], is_selected?(repo), style: 'position: absolute;right: 5px;', class: 'repo_save', data:{'repo-id' => repo[:id], 'search-items-id' => @search_items_id, project_id: @project.id, 'repo-title' => repo[:name], 'repo-url' => repo[:url], 'repo-description' => repo[:description], 'repo-stars' => repo[:stars], 'search-items-id' => @search.id, 'repo-pushed_at' => repo[:pushed_at], 'repo-issues' => repo[:issues]}
+        = check_box_tag "repo_ids", repo[:id], is_selected?(repo), style: 'position: absolute;right: 5px;', class: 'repo_save'
         %a{href: "https://github.com/#{repo[:reference]}", target: 'blank'}
           %i.fa.fa-external-link
 
@@ -25,5 +25,5 @@
           = repo[:pushed_at].strftime('%d/%m/%Y')
           (#{repo[:issues]})
         %div
-          %a.repo_delete{:href => "#", data: { repo_id: repo[:id], project_id: @search.project.id} , :style => "position: absolute;right: 5px;top: 0px;"}
-            %i.fa.fa-trash
+          %a.repo_delete{:href => "#", :style => "position: absolute;right: 5px;top: 0px;"}
+            %i.fa.fa-trash{style: is_selected?(repo) ? 'color: grey' : '', title: is_selected?(repo) ? "Can't delete saved repo" : ''}

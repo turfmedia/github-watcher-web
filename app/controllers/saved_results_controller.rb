@@ -2,7 +2,6 @@ class SavedResultsController < ApplicationController
 
   #create saved result
   def create
-    # getting data from cache according search_items_id
     SavedResult.where(repo_id: params[:repo_id], project_id: params[:project_id]).first_or_create(repo_params)
     render :json => {:status => 200}
   end

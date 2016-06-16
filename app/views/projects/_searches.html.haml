@@ -10,7 +10,7 @@
                 = "(#{item.language.present? ? item.language : 'all'})"
 
     .five.columns
-      .row
+      .row.searched-repos{data:{search_id: @search.id}}
         = render partial: 'repo', collection: @search.results
 
     .five.columns
