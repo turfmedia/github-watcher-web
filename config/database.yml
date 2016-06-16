@@ -2,6 +2,8 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
+  host: db   
+  username: postgres
 
 development:
   <<: *default
@@ -12,4 +14,6 @@ test:
   encoding: utf8
   database: github_watcher_test
   pool: 5
+  username: yasfi  
+  password: yasfi   
   host: localhost
