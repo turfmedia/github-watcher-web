@@ -33,7 +33,7 @@
 clearing :off
 interactor :off
 # notification :off #gntp, :host => '172.17.0.1'
-notification :gntp, :host => '10.0.0.12', password: 'turfmedia'
+notification :gntp, :host => '10.0.0.24', password: 'turfmedia'
 
 
 
