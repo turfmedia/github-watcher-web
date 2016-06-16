@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
 
   #find a user with user session
   def current_user
-    session[:user_id] = User.first.id
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 end

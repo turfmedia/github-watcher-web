@@ -14,18 +14,16 @@ module GithubCached
           :compress => true
         })
     else
-        Dalli::Client.new('memcached', { :namespace => 'github_watcher', :expires_in => 1.day, :socket_timeout => 3, :compress => true })
+      Dalli::Client.new('memcached', { :namespace => 'github_watcher', :expires_in => 1.day, :socket_timeout => 3, :compress => true })
     end
   end
 
   def self.get(key)
-    # client.get(key.to_s)
-    nil
+    client.get(key.to_s)
   end
 
   def self.set(key, data, ttl)
-    # client.set(key.to_s, data, ttl)
-    nil
+    client.set(key.to_s, data, ttl)
   end
 
   def self.readme(repo_name)
@@ -41,7 +39,6 @@ module GithubCached
   def self.search(token, terms, language = nil)
     key = "#{terms.gsub(' ', '_')}_#{language}"
     result = get(key)
-    result = nil
     if result.blank?
       # @search.update(date_request_cache: Time.now)
       client = Github::Watcher::Client.new(token)
