@@ -7,7 +7,7 @@
             %i.fa.fa-search
             = f.text_field :topic, class: "search-box", placeholder: "Topic..."
         .three.columns.tabs
-          = f.select :language, options_for_select([["Language", ""], 'ruby', 'go', 'javascript', 'rust' , 'java'])
+          = f.select :language, options_for_select([["Language", ""], 'ruby', 'go', 'javascript', 'python', 'rust' , 'java'])
         .three.columns.tabs
           = f.submit "Add", class: "button-primary"
     .swap-right

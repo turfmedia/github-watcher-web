@@ -45,9 +45,6 @@ class ProjectsController < ApplicationController
     params.require(:search).permit(:topic, :language, :project_id)
   end
 
-
-  private
-
   def set_project
     if params[:project_id].blank?
       @project = Project.find(params[:id])
