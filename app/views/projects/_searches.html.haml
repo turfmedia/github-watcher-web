@@ -6,12 +6,14 @@
           %div{class: "twelve columns result-search report #{'active' if (item.id == params[:id].to_i)}", :id => "item-#{item.id}"}
             %a{:href => "#{project_search_item_path(item.project_id, item.id)}"}
               = item.topic
+              %small
+                = "(#{item.language.present? ? item.language : 'all'})"
 
     .five.columns
-      .row
+      .row.searched-repos{data:{search_id: @search.id}}
         = render partial: 'repo', collection: @search.results
 
     .five.columns
-      #readme
+      .read-me
 - else
   %h6.noresult No Search Item

@@ -6,5 +6,5 @@
         %button.button-primary.select Select Project
         .dropdown-content
           - @projects.each do |project|
-            = link_to project.name, project_path
+            = link_to project.name, project
           = link_to "Add New Project", new_project_path

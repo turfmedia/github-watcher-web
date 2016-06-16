@@ -14,7 +14,7 @@ module GithubCached
           :compress => true
         })
     else
-        Dalli::Client.new('memcached', { :namespace => 'github_watcher', :expires_in => 1.day, :socket_timeout => 3, :compress => true })
+      Dalli::Client.new('memcached', { :namespace => 'github_watcher', :expires_in => 1.day, :socket_timeout => 3, :compress => true })
     end
   end
 
@@ -30,7 +30,7 @@ module GithubCached
     result = get(repo_name)
     if result.blank?
       # readme_url = JSON.parse(Net::HTTP.get(URI("https://api.github.com/repos/#{repo_name}/readme")))['html_url']
-		  result = Nokogiri::HTML(open("https://github.com/#{repo_name}")).css('#readme > article').to_html
+      result = Nokogiri::HTML(open("https://github.com/#{repo_name}")).css('#readme > article').to_html
       set(repo_name, result, 1.day)
     end
     result
@@ -40,7 +40,6 @@ module GithubCached
     key = "#{terms.gsub(' ', '_')}_#{language}"
     result = get(key)
     if result.blank?
-
       # @search.update(date_request_cache: Time.now)
       client = Github::Watcher::Client.new(token)
       result = client.search(terms, language)
