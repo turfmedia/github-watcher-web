@@ -7,7 +7,7 @@ gem 'rails', '4.2.5'
 # Use pg as the database for Active Record
 gem 'pg'
 gem 'haml-rails'
-gem "omniauth-github", '1.1.1'
+gem "omniauth-github", '1.1.2'
 gem 'github-watcher', github: "sbusso/github-watcher"
 
 # Use SCSS for stylesheets
